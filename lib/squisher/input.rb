@@ -7,11 +7,11 @@ class Input
   end
 
   def set_defaults(options)
-    @delimiter       = options[:delimiter]      || DEFAULT_DELIMITER
-    @join_by         = options[:join_by]        || DEFAULT_JOIN_BY
-    @limit           = options[:limit]          || DEFAULT_LIMIT
-    # @hard_limit      = options[:hard_limit]     || DEFAULT_HARD_LIMIT #TODO: hard limit
-    @threshold       = options[:threshold]      || DEFAULT_THRESHOLD
+    @delimiter       = options[:delimiter]      || ::DEFAULT_DELIMITER
+    @join_by         = options[:join_by]        || ::DEFAULT_JOIN_BY
+    @limit           = options[:limit]          || ::DEFAULT_LIMIT
+    # @hard_limit      = options[:hard_limit]     || ::DEFAULT_HARD_LIMIT #TODO: hard limit
+    @threshold       = options[:threshold]      || ::DEFAULT_THRESHOLD
   end
 
   def length
