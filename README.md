@@ -1,8 +1,7 @@
-# Squisher
+# Squisher >>> Sqishr
+### create squished, readable strings
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/squisher`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Squisher attempts to remove as many letters as it can while keeping your text readable.
 
 ## Installation
 
@@ -22,7 +21,24 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Squisher by default squishes as much as it can with a word length minimum of 3 characters.
+
+```ruby
+Squisher.squish('squish the text to death')
+# => "sqsh the txt to dth"
+```
+
+Shisher allows you to pass options for:
+- word_min: the minimum required length for each word; default is 3
+- total_max: the maximum desired length of the entire string; default is 0
+  - this option is not a hard limit and word_min has higher priority
+- delimiter: the delimiter used to split inputted text into words; default /\s+/
+- join_by: the character to join the words 
+
+## TODO
+
+- make the delimiter capture the split and rejoin based on what is captured
+- implement a hard limit option that overrides the word_min
 
 ## Development
 
@@ -32,7 +48,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/squisher.
+Bug reports and pull requests are welcome on GitHub at https://github.com/dysomni/squisher.
 
 
 ## License

@@ -1,6 +1,6 @@
 module Squisher
   class Input
-    attr_accessor :words, :limit, :hard_limit, :threshold
+    attr_accessor :words, :total_max, :word_min, :hard_limit
 
     def initialize(string, options={})
       set_defaults(options)
@@ -10,9 +10,9 @@ module Squisher
     def set_defaults(options)
       @delimiter       = options[:delimiter]      || DEFAULT_DELIMITER
       @join_by         = options[:join_by]        || DEFAULT_JOIN_BY
-      @limit           = options[:limit]          || DEFAULT_LIMIT
+      @total_max       = options[:total_max]      || DEFAULT_TOTAL_MAX
+      @word_min        = options[:word_min]       || DEFAULT_WORD_MIN
       # @hard_limit      = options[:hard_limit]     || DEFAULT_HARD_LIMIT #TODO: hard limit
-      @threshold       = options[:threshold]      || DEFAULT_THRESHOLD
     end
 
     def length
@@ -36,14 +36,14 @@ module Squisher
     private
 
     def degrees_necesary?
-      return true if @limit < length
+      return true if @total_max < length
 
       @words.each{|w| w.degree = 0}
       false
     end
 
     def delegation_necesary?
-      @limit > (length - potential_sum)
+      @total_max > (length - potential_sum)
     end
 
     def delegate
@@ -52,7 +52,7 @@ module Squisher
     end
 
     def assign_delegate_process_variables
-      @needed_degrees = length - @limit
+      @needed_degrees = length - @total_max
       @unprocessed_potential = potential_sum
       @unprocessed_words = @words.sort{|w1, w2| w1.length <=> w2.length}
     end

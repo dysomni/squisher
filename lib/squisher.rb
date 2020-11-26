@@ -8,9 +8,9 @@ module Squisher
 
   DEFAULT_DELIMITER  = /\s+/
   DEFAULT_JOIN_BY    = ' '
-  DEFAULT_LIMIT      = 0
+  DEFAULT_TOTAL_MAX  = 0
   # DEFAULT_HARD_LIMIT = false
-  DEFAULT_THRESHOLD  = 3
+  DEFAULT_WORD_MIN   = 3
 
   def self.squish(string, options={})
     Input.new(string, options).to_s

@@ -19,7 +19,7 @@ module Squisher
       @potential ||= begin
         total_count = duplicates_count + vowels_count
         left = length - total_count
-        total_count -= (parent.threshold - left) if left < parent.threshold
+        total_count -= (parent.word_min - left) if left < parent.word_min
         total_count >= 0 ? total_count : 0
       end
     end
