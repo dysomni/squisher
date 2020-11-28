@@ -32,8 +32,7 @@ Shisher allows you to pass options for:
 - word_min: the minimum required length for each word; default is 3
 - total_max: the maximum desired length of the entire string; default is 0
   - this option is not a hard limit and word_min has higher priority
-- delimiter: the delimiter used to split inputted text into words; default /\s+/
-- join_by: the character to join the words 
+- delimiter: the delimiter used to split inputted text into words; default /[\W]+/
 
 ## TODO
 

@@ -4,12 +4,13 @@ module Squisher
 
     def initialize(string, options={})
       set_defaults(options)
+      @string = string
+      @delimiters = string.scan(@delimiter)
       @words = string.split(@delimiter).map{|word| Word.new(word, self)}
     end
 
     def set_defaults(options)
       @delimiter       = options[:delimiter]      || DEFAULT_DELIMITER
-      @join_by         = options[:join_by]        || DEFAULT_JOIN_BY
       @total_max       = options[:total_max]      || DEFAULT_TOTAL_MAX
       @word_min        = options[:word_min]       || DEFAULT_WORD_MIN
       # @hard_limit      = options[:hard_limit]     || DEFAULT_HARD_LIMIT #TODO: hard limit
@@ -30,7 +31,13 @@ module Squisher
     end
 
     def to_s
-      @to_s ||= @words.map(&:to_s).join(@join_by)
+      @to_s ||= begin
+        if @string.index(@delimiter) == 0
+          @delimiters.zip(@words.map(&:to_s))
+        else
+          @words.map(&:to_s).zip(@delimiters)
+        end.flatten.join
+      end
     end
 
     private
