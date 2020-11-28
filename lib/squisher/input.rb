@@ -6,7 +6,7 @@ module Squisher
       set_defaults(options)
       @string = string
       @delimiters = string.scan(@delimiter)
-      @words = string.split(@delimiter).map{|word| Word.new(word, self)}
+      @words = string.split(@delimiter).map{|word| Word.new(word, self) unless word.nil? || word == ''}.compact
     end
 
     def set_defaults(options)
